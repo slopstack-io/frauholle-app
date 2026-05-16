@@ -1,5 +1,12 @@
 {
   "rewrites": [
-    { "source": "/lernkarten/:path*", "destination": "/lernkarten/:path*" }
+    {
+      "source": "/lernkarten/:path*",
+      "destination": "/lernkarten/:path*"
+    },
+    {
+      "source": "/wochenendplaner/:path*",
+      "destination": "/wochenendplaner/:path*"
+    }
   ]
 }
