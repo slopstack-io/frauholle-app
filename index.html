@@ -4009,8 +4009,16 @@
       });
     });
 
+    /* ── HMAC-SHA256 helper (webhook signature) ── */
+    async function hmacSha256(secret, message) {
+      const enc = new TextEncoder();
+      const key = await crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+      const sig = await crypto.subtle.sign('HMAC', key, enc.encode(message));
+      return Array.from(new Uint8Array(sig)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
     /* Form submission */
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const screen   = screens[cur];
       const emailEl  = screen.querySelector('input[type="email"]');
@@ -4025,6 +4033,33 @@
 
       // Persist locally so refresh doesn't blank
       try { localStorage.setItem('frauholle.intake', JSON.stringify(data)); } catch (_) {}
+
+      // ── Send to Frau Holle webhook ──
+      const submitBtn = screen.querySelector('button[type="submit"]');
+      const origHTML  = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="dot-load" aria-hidden="true"><span></span><span></span><span></span></span> Wird gesendet …';
+
+      try {
+        const body = JSON.stringify(data);
+        const sig  = await hmacSha256('fh-intake-2026-holle-gold', body);
+        const WEBHOOK_URL = 'https://space-golf-antivirus-gel.trycloudflare.com/webhooks/intake';
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Hub-Signature-256': 'sha256=' + sig,
+          },
+          body: body,
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+      } catch (err) {
+        console.error('Webhook error:', err);
+        showToast("Hmm, etwas ist schiefgegangen. Bitte versuche es später nochmal.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origHTML;
+        return;
+      }
 
       // Go to thanks screen (last)
       const thanksIdx = screens.findIndex(s => s.classList.contains('thanks'));
