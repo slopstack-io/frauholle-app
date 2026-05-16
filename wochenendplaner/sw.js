@@ -1,9 +1,10 @@
 const CACHE_NAME = 'wochenendplaner-v3';
+const BASE = '/wochenendplaner';
 const STATIC_ASSETS = [
-  '/',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  `${BASE}/`,
+  `${BASE}/manifest.json`,
+  `${BASE}/icons/icon-192.png`,
+  `${BASE}/icons/icon-512.png`,
 ];
 
 self.addEventListener('install', (event) => {
@@ -24,8 +25,7 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-  // Only cache same-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) return;
+  if (!event.request.url.includes(BASE)) return;
   
   event.respondWith(
     fetch(event.request)
