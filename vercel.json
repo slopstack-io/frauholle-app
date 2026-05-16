@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/lernkarten/:path*", "destination": "/lernkarten/:path*" }
+  ]
+}
