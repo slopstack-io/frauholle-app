@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wochenendplaner-v1';
+const CACHE_NAME = 'wochenendplaner-v2';
 const BASE = '/wochenendplaner';
 const STATIC_ASSETS = [
   `${BASE}/`,
