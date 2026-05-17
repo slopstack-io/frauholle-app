@@ -1547,12 +1547,249 @@
   .intake .head h2 { margin-bottom: 14px; }
   .intake .head p { color: var(--gray); font-size: 16px; }
 
-  .intake-card {
-    max-width: 720px;
+  .intake-shell {
+    display: grid;
+    grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    max-width: 1120px;
     margin: 0 auto;
+  }
+  .intake-side {
+    position: sticky;
+    top: 108px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .intake-side .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: rgba(201,168,76,0.12);
+    color: var(--thread-deep);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: var(--r-pill);
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .intake-side h3 {
+    font-size: clamp(30px, 3vw, 42px);
+    max-width: 11ch;
+  }
+  .intake-side p {
+    color: var(--gray);
+    font-size: 15.5px;
+    line-height: 1.7;
+    max-width: 32ch;
+  }
+  .side-note {
+    background: rgba(255,255,255,0.75);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow-soft);
+  }
+  .side-note strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .summary-card {
+    background: rgba(255,255,255,0.86);
+    border: 1px solid var(--hairline);
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: var(--shadow-card);
+  }
+  .summary-card .eyebrow {
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .summary-card h4 {
+    margin: 0 0 8px;
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .summary-card p {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: var(--gray);
+  }
+  .summary-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .summary-list li {
+    background: var(--field);
+    border-radius: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(26,26,26,0.06);
+  }
+  .summary-list strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--thread-deep);
+    margin-bottom: 5px;
+  }
+  .summary-list span {
+    display: block;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .summary-list .summary-empty {
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  .intake-card {
+    max-width: none;
+    margin: 0;
     padding: clamp(36px, 5vw, 56px);
     border-radius: 24px;
     position: relative;
+  }
+  .chat-window {
+    border-radius: 22px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,242,236,0.92));
+    border: 1px solid rgba(26,26,26,0.08);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
+  }
+  .chat-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    border-bottom: 1px solid rgba(26,26,26,0.06);
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .chat-topbar .who {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .chat-topbar .av {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #D8C99B, #C9A84C);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: 0 10px 24px -12px rgba(201,168,76,0.75);
+  }
+  .chat-topbar strong {
+    display: block;
+    color: var(--ink);
+    font-size: 15px;
+  }
+  .chat-topbar span {
+    display: block;
+    font-size: 12.5px;
+    color: var(--gray);
+  }
+  .chat-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray);
+  }
+  .chat-status .pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5BA670;
+    box-shadow: 0 0 0 0 rgba(91,166,112,0.55);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  .chat-stream {
+    padding: 22px;
+  }
+  .assistant-intro {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .assistant-intro .mini-av {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #D8C99B, #C9A84C);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    flex: none;
+  }
+  .assistant-intro .bubble {
+    max-width: 440px;
+    background: #fff;
+    border-radius: 18px 18px 18px 6px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(26,26,26,0.06);
+  }
+  .assistant-intro .bubble strong {
+    display: block;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  .assistant-intro .bubble p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.55;
+  }
+  .chat-footnote {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(26,26,26,0.06);
+    color: var(--gray);
+    font-size: 12.5px;
+  }
+  .chat-footnote .chips-mini {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chat-footnote .chips-mini span {
+    background: rgba(255,255,255,0.86);
+    border: 1px solid rgba(26,26,26,0.08);
+    border-radius: var(--r-pill);
+    padding: 6px 10px;
   }
   #intakeForm {
     display: grid;
@@ -1597,8 +1834,14 @@
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.015em;
-    margin: 0 0 26px;
+    margin: 0 0 18px;
     color: var(--ink);
+    background: #fff;
+    border-radius: 20px 20px 20px 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(26,26,26,0.06);
+    max-width: 560px;
   }
 
   /* Welcome screen */
@@ -2022,9 +2265,20 @@
 
   @media (max-width: 720px) {
     .style-grid { grid-template-columns: repeat(2, 1fr); }
+    .intake-shell { grid-template-columns: 1fr; }
+    .intake-side {
+      position: static;
+      order: 2;
+    }
   }
   @media (max-width: 560px) {
     .intake-card { padding: 32px 22px; }
+    .chat-topbar,
+    .chat-stream { padding-left: 16px; padding-right: 16px; }
+    .chat-footnote {
+      flex-direction: column;
+      align-items: flex-start;
+    }
     .feedback-toast { bottom: 80px; }
     .progress-bar { padding: 10px 16px 12px; }
   }
@@ -3352,15 +3606,58 @@
 <section class="intake" id="intake">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow reveal">Erzähl uns davon</span>
-      <h2 class="reveal" data-delay="1">7 Fragen. ~2 Minuten. Kein Formular.</h2>
+      <span class="eyebrow reveal">Chatte mit Frau Holle</span>
+      <h2 class="reveal" data-delay="1">Ein sichtbares Chatfenster statt einer toten Formularwand.</h2>
       <p class="reveal" data-delay="2">
-        Ein kleines Gespräch — und am Ende baut Frau Holle deinen Prototypen.
+        Ein kleines Gespräch direkt auf der Website. Frau Holle fragt nach, schreibt live mit und baut danach deinen Prototypen.
       </p>
     </div>
 
-    <div class="card intake-card reveal" data-delay="2" id="intakeCard">
-      <form id="intakeForm" autocomplete="off" novalidate>
+    <div class="intake-shell">
+      <aside class="intake-side reveal" data-delay="1">
+        <span class="kicker">Live seit heute</span>
+        <h3>Das Gespräch beginnt, bevor der Build beginnt.</h3>
+        <p>
+          Nutzer:innen sehen jetzt sofort ein echtes Chatfenster auf der Live-Seite statt nur den Einstieg in einen klassischen Fragebogen.
+        </p>
+        <div class="summary-card">
+          <span class="eyebrow">Mitgeschrieben</span>
+          <h4>Gesprächszusammenfassung</h4>
+          <p>Antworten landen parallel hier, damit aus dem Chat eine klare App-Briefing-Grundlage wird.</p>
+          <ul class="summary-list" id="chatSummary">
+            <li class="summary-empty">Noch keine Antworten. Frau Holle startet gleich mit der ersten Frage.</li>
+          </ul>
+        </div>
+        <div class="side-note">
+          <strong>Weniger Pflichtfeld, mehr Gefühl.</strong>
+          <p>Der bestehende Versand bleibt intakt. Geändert wurde vor allem die Oberfläche: sichtbar, gesprächig, mobil brauchbar.</p>
+        </div>
+      </aside>
+
+      <div class="card intake-card reveal" data-delay="2" id="intakeCard">
+        <div class="chat-window">
+          <div class="chat-topbar">
+            <div class="who">
+              <span class="av" aria-hidden="true">F</span>
+              <div>
+                <strong>Frau Holle</strong>
+                <span id="chatStageLabel">Startet das Gespräch</span>
+              </div>
+            </div>
+            <div class="chat-status">
+              <span class="pulse" aria-hidden="true"></span>
+              <span id="chatProgressMeta">0% · antwortet sofort</span>
+            </div>
+          </div>
+          <div class="chat-stream">
+            <div class="assistant-intro">
+              <span class="mini-av" aria-hidden="true">F</span>
+              <div class="bubble">
+                <strong>Neue Nachricht</strong>
+                <p>Hey, ich bin Frau Holle. Erzähl mir in ein paar Nachrichten, was du wirklich brauchst. Ich frage nur das, was uns zum richtigen Prototyp bringt.</p>
+              </div>
+            </div>
+            <form id="intakeForm" autocomplete="off" novalidate>
 
         <!-- ===== Screen 0: Welcome ===== -->
         <div class="screen active welcome" data-i="0" data-progress="0">
@@ -3551,7 +3848,18 @@
           </div>
         </div>
 
-      </form>
+            </form>
+            <div class="chat-footnote">
+              <span>Antwortzeit: meist unter 2 Minuten bis zum fertigen Briefing.</span>
+              <div class="chips-mini" aria-hidden="true">
+                <span>Kein Login</span>
+                <span>24h bis Prototyp</span>
+                <span>Mobil optimiert</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -3804,12 +4112,34 @@
     const progressFill = document.getElementById('progressFill');
     const progressNum  = document.getElementById('progressNum');
     const progressLabel= document.getElementById('progressLabel');
+    const chatStageLabel = document.getElementById('chatStageLabel');
+    const chatProgressMeta = document.getElementById('chatProgressMeta');
+    const chatSummary = document.getElementById('chatSummary');
     const halftime   = document.getElementById('halftime');
     const toast      = document.getElementById('feedbackToast');
 
     let cur = 0;             // index into `screens`
     let halftimeShown = false;
     const data = {};         // accumulated answers
+    const stageNames = [
+      'Begruessung',
+      'Was dich beschaeftigt',
+      'Wunschbild',
+      'Zielgruppe',
+      'Alternativen',
+      'Herzensfeature',
+      'Stilgefuehl',
+      'Kontakt'
+    ];
+    const summaryFields = [
+      ['thema', 'Ausgangspunkt'],
+      ['problem', 'Wenn es gut waere'],
+      ['zielgruppe', 'Fuer wen'],
+      ['bestehend', 'Was es schon gibt'],
+      ['feature', 'Wichtigstes Feature'],
+      ['stil', 'Soll sich anfuehlen wie'],
+      ['email', 'Rueckmeldung an']
+    ];
 
     /* Encouraging progress labels by % range */
     const labels = [
@@ -3826,6 +4156,66 @@
       let best = labels[0][1];
       for (const [p, l] of labels) if (pct >= p) best = l;
       return best;
+    }
+
+    function displayValue(key) {
+      const value = data[key];
+      if (!value) return '';
+      if (key === 'thema' && value === 'anderes' && data.thema_anderes) return data.thema_anderes;
+      if (key === 'zielgruppe' && value === 'bestimmt' && data.zielgruppe_bestimmt) return data.zielgruppe_bestimmt;
+      if (key === 'stil') {
+        const labels = {
+          minimal: 'Minimalistisch & clean',
+          spielerisch: 'Spielerisch & intuitiv',
+          seriös: 'Professionell & serioes',
+          kreativ: 'Kreativ & bunt',
+          pragmatisch: 'Schnell & pragmatisch',
+          ueberrasch_mich: 'Ueberrasch mich'
+        };
+        return labels[value] || value;
+      }
+      return value;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function renderSummary() {
+      if (!chatSummary) return;
+      const rows = summaryFields
+        .map(([key, label]) => {
+          const value = displayValue(key);
+          return value ? { label, value } : null;
+        })
+        .filter(Boolean);
+
+      if (!rows.length) {
+        chatSummary.innerHTML = '<li class="summary-empty">Noch keine Antworten. Frau Holle startet gleich mit der ersten Frage.</li>';
+        return;
+      }
+
+      chatSummary.innerHTML = rows
+        .map(({ label, value }) => `<li><strong>${escapeHtml(label)}</strong><span>${escapeHtml(value)}</span></li>`)
+        .join('');
+    }
+
+    function updateChatHeader(screen, pct) {
+      if (chatStageLabel) {
+        if (screen.classList.contains('thanks')) chatStageLabel.textContent = 'Briefing abgeschlossen';
+        else chatStageLabel.textContent = stageNames[cur] || 'Im Gespraech';
+      }
+      if (chatProgressMeta) {
+        const metaCopy = screen.classList.contains('thanks')
+          ? '100% · Prototyp wird vorbereitet'
+          : `${pct}% · antwortet sofort`;
+        chatProgressMeta.textContent = metaCopy;
+      }
     }
 
     /* Render screen at index i (with leave/enter animation) */
@@ -3853,6 +4243,8 @@
       progressFill.style.width = pct + '%';
       progressNum.textContent  = pct + '%';
       progressLabel.textContent = labelFor(pct);
+      updateChatHeader(to, pct);
+      renderSummary();
 
       // Halftime reward — fires once, when entering screen index 5 (after answering Q4)
       if (i === 5 && !halftimeShown) {
@@ -3903,6 +4295,7 @@
 
       // Store
       data[field] = val;
+      renderSummary();
 
       // Per-option feedback override > screen feedback
       const screen = btn.closest('.screen');
@@ -3945,6 +4338,7 @@
         const ta = screen.querySelector('.text-wrap textarea');
         if (ta) {
           data[ta.name] = ta.value.trim();
+          renderSummary();
           const fb = screen.dataset.feedback;
           if (fb && ta.value.trim().length > 0) showToast(fb);
         }
@@ -3993,6 +4387,7 @@
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
           data[ta.name] = ta.value.trim();
+          renderSummary();
           if (ta.value.trim().length > 0) next();
         }
       });
@@ -4030,6 +4425,7 @@
       }
       data.email = emailEl ? emailEl.value.trim() : '';
       data.name  = nameEl  ? nameEl.value.trim()  : '';
+      renderSummary();
 
       // Persist locally so refresh doesn't blank
       try { localStorage.setItem('frauholle.intake', JSON.stringify(data)); } catch (_) {}
@@ -4081,6 +4477,8 @@
       });
     }, { threshold: 0.05 });
     io2.observe(intakeSec);
+    renderSummary();
+    updateChatHeader(screens[cur], parseInt(screens[cur].dataset.progress || '0', 10));
 
   })();
 
